@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import memeImage from "../assets/memeImage.png"
 
 export default function Home(){
@@ -9,6 +9,14 @@ export default function Home(){
             imgUrl: memeImage
         }
     )
+
+    const [allMemes, setAllMemes] = useState([])
+
+    useEffect(() => {
+        fetch("https://api.imgflip.com/get_memes")
+        .then(res => res.json())
+        .then(data => setAllMemes(data.data.memes))
+    },[] )
 
     function handleChange(e) {
         const {value, name} = e.currentTarget

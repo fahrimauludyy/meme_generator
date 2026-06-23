@@ -26,11 +26,20 @@ export default function Home(){
         }))
     }
 
+    function getAllMemes(){
+        const randomNumber = Math.floor(Math.random() * allMemes.length)
+        const newMemeUrl = allMemes[randomNumber].url
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            imgUrl:newMemeUrl
+        }))
+    }
+
     return(
     <main className='flex justify-center items-center'>
         <div className="min-w-xl min-h-full py-16 flex flex-col gap-8">
             <div className="form">
-                <div className="flex gap-5">
+                <div className="flex gap-5 ">
                     <label className="flex flex-col gap-2 text-lg">Top Text
                         <input name="topText" value={meme.topText} onChange={handleChange} placeholder="Input Here..." className="text-base min-w-72 py-2 px-2 outline-[#CCCCCC] outline-[1.5px]  rounded-md" type="text"/>
                     </label>
@@ -39,7 +48,7 @@ export default function Home(){
                     </label>
                 </div>
             </div>
-            <button className="w-full h-12 bg-linear-210 from-[#ECB65F] to-[#E89951] text-white text-lg font-semibold  rounded-md"> Get a new meme image🖼️</button>
+            <button onClick={getAllMemes} className="w-full h-12 bg-linear-210 from-[#ECB65F] to-[#E89951] text-white text-lg font-semibold  rounded-md"> Get a new meme image🖼️</button>
             <div className="meme relative w-full">
                 <img
                     className="block w-full h-auto"
